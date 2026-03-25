@@ -2,60 +2,208 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap');
+
 :root {
   --bg-primary: #0a0a0f;
-  --bg-secondary: #12121a;
-  --glass-bg: rgba(255, 255, 255, 0.05);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --accent-purple: #a855f7;
-  --accent-blue: #3b82f6;
+  --bg-secondary: #111118;
+  --bg-concrete: #16161e;
+  --stripe-white: rgba(255, 255, 255, 0.85);
+  --accent-gold: #d4a017;
+  --accent-amber: #f59e0b;
+  --accent-red: #dc2626;
   --accent-green: #22c55e;
-  --accent-red: #ef4444;
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
+  --text-primary: #e8e8e8;
+  --text-secondary: #7a7a8a;
+  --concrete-light: rgba(255, 255, 255, 0.04);
+  --concrete-border: rgba(255, 255, 255, 0.08);
 }
 
 body {
   background: var(--bg-primary);
   color: var(--text-primary);
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: 'Oswald', 'Impact', 'Arial Black', system-ui, sans-serif;
+  position: relative;
 }
 
-/* Glassmorphism card */
+/* === CONCRETE BACKGROUND TEXTURE === */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background:
+    /* Noise/grain texture */
+    repeating-conic-gradient(rgba(255,255,255,0.01) 0% 25%, transparent 0% 50%) 0 0 / 3px 3px,
+    /* Panelák silhouette pattern */
+    linear-gradient(to bottom, transparent 0%, transparent 85%, rgba(30,30,40,0.9) 85%, rgba(30,30,40,0.9) 100%),
+    var(--bg-primary);
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 180px;
+  z-index: -1;
+  background:
+    /* Row of panelák buildings */
+    linear-gradient(to bottom, transparent 0px, transparent 20px, #12121a 20px) 0 0 / 80px 180px,
+    linear-gradient(to bottom, transparent 0px, transparent 50px, #141420 50px) 80px 0 / 120px 180px,
+    linear-gradient(to bottom, transparent 0px, transparent 10px, #111118 10px) 200px 0 / 60px 180px,
+    linear-gradient(to bottom, transparent 0px, transparent 35px, #131320 35px) 260px 0 / 100px 180px,
+    linear-gradient(to bottom, transparent 0px, transparent 60px, #12121c 60px) 360px 0 / 70px 180px,
+    linear-gradient(to bottom, transparent 0px, transparent 15px, #141422 15px) 430px 0 / 90px 180px,
+    linear-gradient(to bottom, transparent 0px, transparent 40px, #111118 40px) 520px 0 / 110px 180px,
+    linear-gradient(to bottom, transparent 0px, transparent 25px, #131320 25px) 630px 0 / 80px 180px,
+    linear-gradient(to bottom, transparent 0px, transparent 55px, #12121a 55px) 710px 0 / 100px 180px;
+  background-repeat: repeat-x;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* === THREE STRIPES DIVIDER === */
+.three-stripes {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  padding: 12px 0;
+}
+.three-stripes::before,
+.three-stripes::after,
+.three-stripes span {
+  content: '';
+  display: block;
+  height: 3px;
+  width: 60px;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 1px;
+}
+.three-stripes span {
+  display: block;
+}
+
+/* Vertical three stripes */
+.stripes-v {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.stripes-v span {
+  display: block;
+  width: 24px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 1px;
+}
+
+/* Header stripes (horizontal beside logo) */
+.header-stripes {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.header-stripes span {
+  display: block;
+  width: 28px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 1px;
+}
+
+/* === CONCRETE CARD === */
+.concrete-card {
+  background: linear-gradient(135deg, rgba(22, 22, 30, 0.95), rgba(18, 18, 26, 0.9));
+  border: 2px solid rgba(255, 255, 255, 0.06);
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  position: relative;
+  box-shadow:
+    2px 2px 0px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.concrete-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 4px;
+  background: repeating-conic-gradient(rgba(255,255,255,0.008) 0% 25%, transparent 0% 50%) 0 0 / 4px 4px;
+  pointer-events: none;
+}
+
+.concrete-card:hover {
+  border-color: rgba(212, 160, 23, 0.4);
+  transform: translateY(-2px);
+  box-shadow:
+    3px 4px 0px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(212, 160, 23, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Three stripe accent on top of cards */
+.concrete-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 16px;
+  right: 16px;
+  height: 3px;
+  background: repeating-linear-gradient(
+    to right,
+    transparent,
+    transparent 30%,
+    rgba(255, 255, 255, 0.15) 30%,
+    rgba(255, 255, 255, 0.15) 31%,
+    transparent 31%,
+    transparent 33%,
+    rgba(255, 255, 255, 0.15) 33%,
+    rgba(255, 255, 255, 0.15) 34%,
+    transparent 34%,
+    transparent 36%,
+    rgba(255, 255, 255, 0.15) 36%,
+    rgba(255, 255, 255, 0.15) 37%,
+    transparent 37%
+  );
+  border-radius: 0 0 2px 2px;
+}
+
+/* Keep glass-card for backwards compat but restyle */
 .glass-card {
-  background: var(--glass-bg);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--glass-border);
-  border-radius: 1rem;
-  transition: all 0.3s ease;
+  background: linear-gradient(135deg, rgba(22, 22, 30, 0.95), rgba(18, 18, 26, 0.9));
+  border: 2px solid rgba(255, 255, 255, 0.06);
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.4);
 }
 
 .glass-card:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(168, 85, 247, 0.3);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(168, 85, 247, 0.15);
+  border-color: rgba(212, 160, 23, 0.3);
+  transform: translateY(-1px);
+  box-shadow: 2px 3px 0px rgba(0, 0, 0, 0.5);
 }
 
 /* Progress bar */
 .progress-bar {
-  height: 8px;
-  border-radius: 4px;
-  background: rgba(255, 255, 255, 0.1);
+  height: 10px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.06);
   overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.04);
 }
 
 .progress-fill-yes {
   height: 100%;
-  border-radius: 4px;
-  background: linear-gradient(90deg, var(--accent-green), #4ade80);
+  border-radius: 2px;
+  background: linear-gradient(90deg, #22c55e, #4ade80);
   transition: width 0.5s ease;
 }
 
 .progress-fill-no {
   height: 100%;
-  border-radius: 4px;
+  border-radius: 2px;
   background: linear-gradient(90deg, var(--accent-red), #f87171);
   transition: width 0.5s ease;
 }
@@ -63,21 +211,21 @@ body {
 /* Category badge */
 .category-badge {
   padding: 0.25rem 0.75rem;
-  border-radius: 9999px;
+  border-radius: 2px;
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
 }
 
 /* Toast animation */
 @keyframes slideUp {
   from {
-    transform: translateY(100%);
+    transform: translateY(100%) translateX(-50%);
     opacity: 0;
   }
   to {
-    transform: translateY(0);
+    transform: translateY(0) translateX(-50%);
     opacity: 1;
   }
 }
@@ -91,9 +239,13 @@ body {
   animation: slideUp 0.3s ease, fadeOut 0.3s ease 2s forwards;
 }
 
-/* Glow effect */
+/* Glow effect - now gold */
+.glow-gold {
+  box-shadow: 0 0 15px rgba(212, 160, 23, 0.3);
+}
+
 .glow-purple {
-  box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+  box-shadow: 0 0 15px rgba(212, 160, 23, 0.3);
 }
 
 /* Scrollbar */
@@ -107,9 +259,102 @@ body {
 
 ::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.1);
-  border-radius: 3px;
+  border-radius: 1px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(212, 160, 23, 0.3);
+}
+
+/* === SLAVIC BUTTON === */
+.slavic-btn {
+  font-family: 'Oswald', 'Impact', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-radius: 3px;
+  position: relative;
+}
+
+/* Three stripes border on bottom of header */
+.header-border-stripes {
+  height: 6px;
+  background: repeating-linear-gradient(
+    to right,
+    transparent 0px,
+    transparent 8px,
+    rgba(255, 255, 255, 0.12) 8px,
+    rgba(255, 255, 255, 0.12) 10px
+  );
+  position: relative;
+}
+
+.header-border-stripes::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* Full width three stripes HR */
+.stripe-hr {
+  border: none;
+  height: 9px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin: 1.5rem 0;
+}
+
+.stripe-hr::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.stripe-hr::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.stripe-hr span {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 2px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* Gold text */
+.text-gold {
+  color: var(--accent-gold);
+}
+
+/* Stamp effect */
+.stamp {
+  display: inline-block;
+  border: 3px solid var(--accent-gold);
+  border-radius: 4px;
+  padding: 2px 10px;
+  transform: rotate(-3deg);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 0.7rem;
+  color: var(--accent-gold);
+  opacity: 0.7;
 }

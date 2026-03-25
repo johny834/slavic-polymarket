@@ -18,5 +18,5 @@ export const CATEGORIES: { name: Category; emoji: string }[] = [
   { name: 'Sport', emoji: '⚽' },
   { name: 'Celebs', emoji: '⭐' },
   { name: 'Tech', emoji: '💻' },
-  { name: 'WTF', emoji: '🤯' },
+  { name: 'WTF', emoji: '🤡' },
 ];
