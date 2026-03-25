@@ -1,0 +1,62 @@
+[
+  {
+    "id": "babis-prezidentem-2028",
+    "question": "Babiš prezidentem 2028?",
+    "description": "Andrej Babiš se vrátí do boje o Hrad a tentokrát uspěje. Nebo ne? Sázej a ukaž, že víš líp než průzkumy.",
+    "category": "Politik",
+    "yesPercent": 62,
+    "noPercent": 38,
+    "totalBets": 1842,
+    "deadline": "2028-01-15",
+    "emoji": "🏛️",
+    "createdAt": "2026-01-10"
+  },
+  {
+    "id": "cesko-ms-hokej-2026",
+    "question": "Česko vyhraje MS v hokeji 2026?",
+    "description": "Po zlatém triumfu fanoušci věří. Zvládne český tým obhájit titul na domácím šampionátu? Hokejové srdce buší!",
+    "category": "Sport",
+    "yesPercent": 45,
+    "noPercent": 55,
+    "totalBets": 3271,
+    "deadline": "2026-05-25",
+    "emoji": "🏒",
+    "createdAt": "2026-02-01"
+  },
+  {
+    "id": "bitcoin-200k",
+    "question": "Bitcoin přes $200k do konce roku?",
+    "description": "Kryptoměnový trh šílí. Překoná Bitcoin magickou hranici $200,000 do 31. prosince? HODL nebo sell?",
+    "category": "Tech",
+    "yesPercent": 28,
+    "noPercent": 72,
+    "totalBets": 5104,
+    "deadline": "2026-12-31",
+    "emoji": "₿",
+    "createdAt": "2026-03-01"
+  },
+  {
+    "id": "jaromir-jagr-konec",
+    "question": "Jágr konečně pověsí brusle na hřebík?",
+    "description": "Legenda, která odmítá odejít. Ukončí Jaromír Jágr aktivní kariéru do konce sezóny 2026/27? Věčný optimista říká ne.",
+    "category": "Celebs",
+    "yesPercent": 15,
+    "noPercent": 85,
+    "totalBets": 4420,
+    "deadline": "2027-04-30",
+    "emoji": "🐐",
+    "createdAt": "2026-03-15"
+  },
+  {
+    "id": "ai-nahrad-politiky",
+    "question": "AI nahradí české politiky do 2030?",
+    "description": "Upřímně, byl by to upgrade? Umělá inteligence v čele státu — sci-fi nebo nevyhnutelná budoucnost?",
+    "category": "WTF",
+    "yesPercent": 8,
+    "noPercent": 92,
+    "totalBets": 2187,
+    "deadline": "2030-01-01",
+    "emoji": "🤖",
+    "createdAt": "2026-03-20"
+  }
+]
